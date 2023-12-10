@@ -8,6 +8,7 @@ Summary of class -
 - Share code
 - System class
 - Documention
+- Variables
 
 ## Class
 
@@ -78,3 +79,15 @@ When we use `.` after System we can use the method of System class.
 Above every class and method there will be a documention that will be for the programmer to explain the code.
 * Full line of description - This kind of line will start with `//` 
 * End of line - This description will be in the end of the line and will start in `/*` and will end with `*/`.
+
+## Variables
+
+Variable it's like a storge in the memory that have a name and contains a value of a type.
+Type is a kind that the variable can get, this is kind of the types:
+* Full Numbers -
+ - `byte` - 8 bits
+ - `short` - Full numbers, low storage
+ - `int`- Full numbers, medium storage (most common)
+ - `long` - Full numbers, high storage
+ 
+ * Full Numbers -
