@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Example1",
+            "request": "launch",
+            "mainClass": "Example1",
+            "projectName": "Java_Course_d8009e93"
+        },
+        {
+            "type": "java",
             "name": "HelloJava",
             "request": "launch",
             "mainClass": "HelloJava",

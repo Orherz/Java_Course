@@ -84,10 +84,22 @@ Above every class and method there will be a documention that will be for the pr
 
 Variable it's like a storge in the memory that have a name and contains a value of a type.
 Type is a kind that the variable can get, this is kind of the types:
-* Full Numbers -
- - `byte` - 8 bits
- - `short` - Full numbers, low storage
- - `int`- Full numbers, medium storage (most common)
- - `long` - Full numbers, high storage
- 
  * Full Numbers -
+ - `byte` - (1 byte)
+ - `short` - Full numbers, low storage (2 bytes)
+ - `int`- Full numbers, medium storage (most common) (4 bytes)
+ - `long` - Full numbers, high storage (8 bytes)
+
+ * Point Numbers -
+ - `float` - low storage (most common) (4 bytes)
+ - `double` - high storage (8 bytes)
+
+ * Boolean - contains `True` or `False` (0 or 1) (common)
+
+ * char - one character (common) (2 bytes)
+
+## Math shoutcuts
+
+num1 = num1 + 5 -> num1 += 5;
+num2 = num2 * 2 -> num2 *= 2;
+num3 = num3 - 4 -> num3 -= 4;
