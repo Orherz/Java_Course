@@ -1,25 +1,28 @@
 ## Class 1
 
-Summary of class -
-- Class
-- Java words
-- Code Structure
-- Write code in Java
-- Share code
-- System class
-- Documention
-- Variables
+Summary of class:
+- [Class](#Class)
+- [Java words](#Java-words)
+- [Code Structure](#Code-Structure)
+- [Write code in Java](#Write-code-in-Java)
+- [Share code](#Share-code)
+- [System class](#System-class)
+- [Documentation](#Documentation)
+- [Variables](#Variables)
+- [Scanner class](#Scanner-class)
+- [Modulo](#Modulo)
+- [Casting](#Casting)
+- [Static variables](#Static-variables)
+- [Errors types](#Errors-types)
 
 ## Class
 
-Java is an object oriented language and every part is an object.
-For every object there is a class that define it, every part of code should be write inside class.
 
-`Class` = `File`
+Java is an object-oriented language, and every part of it is considered an object. Each object is defined by a class, and every code segment should be written within a class.
 
-Every class is define in it's own file.
+`Class = File`
 
-Class is a way to categorize few object of the same kind.
+Every class is defined in its own file. A class is a way to categorize several objects of the same kind.
 
 ## Java words
 
@@ -74,9 +77,9 @@ When we use `.` after System we can use the method of System class.
 - `print` - a method to print without insert return key.
  * We can use the parameter of the println method that get the parameter of what to print - can be vars, strings...
 
-## Documention
+## Documentation
 
-Above every class and method there will be a documention that will be for the programmer to explain the code.
+Above every class and method there will be a Documentation that will be for the programmer to explain the code.
 * Full line of description - This kind of line will start with `//` 
 * End of line - This description will be in the end of the line and will start in `/*` and will end with `*/`.
 
@@ -98,8 +101,94 @@ Type is a kind that the variable can get, this is kind of the types:
 
  * char - one character (common) (2 bytes)
 
+ * variables should only start with lower charachter
+ * inside the variable can insert also capital letters, numbers and the symbol `_`
+ * between words in var, the second word will always start with capital letter
+
+* See Example1.java
+
 ## Math shoutcuts
 
 num1 = num1 + 5 -> num1 += 5;
 num2 = num2 * 2 -> num2 *= 2;
 num3 = num3 - 4 -> num3 -= 4;
+
+## Onary operators
+
+++x or x++ add 1
+--x or x-- remove 1
+The differense of the two is the sequence that the tasks is execute -
+
+For example: 
+* j = ++i; (change the value of i and insert to the j)
+* i = j++; (insert the value of j and then change j value)        
+
+
+## Scanner class
+
+Helps us to get input from the user.
+
+* In order to use it need to import it into the start of the code:
+
+    `import java.util.Scanner;`
+
+* Also we need to create an object (using a variable) from the class Scanner:
+
+    `Scanner scan = new Scanner(System.in);`
+
+    - `new` - create new object
+    - `(System.in)` - the parameter that define the input from the user.
+
+* Method of Scanner class:
+
+    - `nextInt` - get int input
+    - `nextDouble` - get double input
+    - `nextBoolean` - get boolean input
+    - `next().CharAt(0)` - get one character
+
+* See Example2.java
+
+## Modulo
+
+Using modulo we can find what's left after divide one number with another
+
+ For example:
+    - 10 % 5 = 0
+    - 26 % 5 = 1
+    - 17.0 % 3 = 2.0
+
+* Note - When doing modulo between two intergers the sum will be also interger.
+
+## Casting
+
+Using casting we can change one type to another type - can lead to loss data (!)
+
+For example -
+
+* (double)(num1 + num2 + num3) - changing the sum of num1,2,3 that integers to double.
+
+Java always trying to do casting by itself - from smaller types to bigger (without using ()).
+
+# Static variables
+
+We can configure variabels to be static in all of our code.
+Always will be written in capitals letters, like the following example:
+
+- final int NUM_OF_STUDENTS = 40;
+
+* `final` - make it static, so the code could not change it during the code
+* `int` - kind of static int
+* `NUM_OF_STUDENTS` - the defenition of the variable (always will be capital letters and with `_` between the words)
+
+## Errors types
+
+* Compliation error - sytax problems was found during the compling process, for example:
+    - line of code that not ends with `;`
+    - `{}` problems
+    - lower/upper case characters, name of class, variable does not created by used
+
+* Runtime error - The code as been complied successfully but the code didn't function correctly, for example:
+    - divide by 0
+
+* Logical error - The code was complied and run successfully but the results was not excpected, for example (most hard to identify):
+    - math calculation error
