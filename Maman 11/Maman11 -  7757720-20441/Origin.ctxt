@@ -1,0 +1,6 @@
+#BlueJ class context
+comment0.target=Origin
+comment0.text=\ \n\ \ \ \ This\ program\ calculates\ and\ identifies\ the\ nearest\ point\ to\ the\ origin\ (0,0)\ among\ three\ points.\n\ \ \ \ The\ three\ points\ are\ determined\ by\ user\ input\ coordinates.\n\ \ \ \ If\ negative\ coordinate\ values\ are\ provided,\ the\ code\ calculates\ the\ absolute\ distance.\n
+comment1.params=args
+comment1.target=void\ main(java.lang.String[])
+numComments=2
