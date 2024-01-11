@@ -5,9 +5,13 @@
  */
 public class Date {
 
+    // Initialize variables
     private int _day = 1; // day of the date
     private int _month = 1; // month of the date
-    private int _year = 2000; // year of the date
+    private int _year = 2000; // year of the date\
+    private final int FEB_MONTH = 2;
+    private final int LAST_DAY_FEB_MONTH_LEAP_YEAR = 29;
+    private final int LAST_DAY_FEB_NONTH_NON_LEAP_YEAR = 28;
 
     private boolean isLeapYear(int year){
         return (year%4 == 0 && year%100 != 0) || (year%400 == 0) ? true:false;
@@ -15,11 +19,11 @@ public class Date {
 
     private boolean isValidDate(int day, int month, int year){
         if((day >= 1 && day <= 31) && (month >= 1 && month <=12) && (year >= 1000 && year <= 9999)){
-            if(month == 2 && !isLeapYear(year) && !(day > 28))
+            if(month == FEB_MONTH && !isLeapYear(year) && !(day > LAST_DAY_FEB_NONTH_NON_LEAP_YEAR))
                 return true;
-            else if(month == 2 && isLeapYear(year) && !(day > 29))
+            else if(month == FEB_MONTH && isLeapYear(year) && !(day > LAST_DAY_FEB_MONTH_LEAP_YEAR))
                 return true;
-            else if(month != 2)
+            else if(month != FEB_MONTH)
                 return true;
             }
         return false;
@@ -183,16 +187,18 @@ public class Date {
      */
     public Date addYearsToDate(int num){
         _year += num;
-        if (isLeapYear(_year) && _month == 2)
-            _day = 29;
-        else
-            _day = 28;
-
+    
+        // Ensure that February 29th is adjusted for leap years
+        if (_month == FEB_MONTH && _day == LAST_DAY_FEB_MONTH_LEAP_YEAR && !isLeapYear(_year)) {
+            _day = LAST_DAY_FEB_NONTH_NON_LEAP_YEAR;
+        }
+        
         return this;
     }
 
     /**
      * Returns a String that represents this date
+     * @return a String that represents this date
      */
     public String toString(){
         String message;
