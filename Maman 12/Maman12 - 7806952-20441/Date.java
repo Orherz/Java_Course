@@ -1,7 +1,7 @@
 /**
  * This class represents a Date object
  * @author Or Herzog
- * @version 10/1/2024
+ * @version 15/1/2024
  */
 public class Date {
 
@@ -12,11 +12,14 @@ public class Date {
     private final int FEB_MONTH = 2;
     private final int LAST_DAY_FEB_MONTH_LEAP_YEAR = 29;
     private final int LAST_DAY_FEB_NONTH_NON_LEAP_YEAR = 28;
+    private final int TWO_DIGIT_LENGTH = 10;
 
+    // Helper method to check if a year is a leap year
     private boolean isLeapYear(int year){
         return (year%4 == 0 && year%100 != 0) || (year%400 == 0) ? true:false;
     }
 
+    // Helper method to validate a date
     private boolean isValidDate(int day, int month, int year){
         if((day >= 1 && day <= 31) && (month >= 1 && month <=12) && (year >= 1000 && year <= 9999)){
             if(month == FEB_MONTH && !isLeapYear(year) && !(day > LAST_DAY_FEB_NONTH_NON_LEAP_YEAR))
@@ -29,6 +32,7 @@ public class Date {
         return false;
     }
 
+    // Helper method to calculate a date
     private int calculateDate(int day, int month, int year){
         if(month < 3){
             year--;
@@ -44,6 +48,7 @@ public class Date {
      * @param year the year (4 digits)
      */
     public Date(int day, int month, int year){
+        // Check if the provided date is valid
         if(isValidDate(day, month, year)){
             _day = day;
             _month = month;
@@ -56,12 +61,13 @@ public class Date {
      * Copy constructor
      * @param other the date to be copied
      */
-    public Date(Date other){
-        _day = other._day;
-        _month = other._month;
-        _year = other._year;
+    public Date(Date other) {
+        // Copy the values of the other date
+        _day = other.getDay();
+        _month = other.getMonth();
+        _year = other.getYear();
     }
-
+    
     /**
      * Gets the year
      * @return the year of this date
@@ -91,6 +97,7 @@ public class Date {
      * @param year the new year value
      */
     public void setYear(int year){
+        // Check if the new year value keeps the date valid
         if(isValidDate(_day, _month, year))
             _year = year;
     }
@@ -100,6 +107,7 @@ public class Date {
      * @param month the new month value
      */
     public void setMonth(int month){
+        // Check if the new month value keeps the date valid
         if(isValidDate(_day, month, _year))
             _month = month;
     }
@@ -109,6 +117,7 @@ public class Date {
      * @param day the new day value
      */
     public void setDay(int day){
+        // Check if the new day value keeps the date valid
         if(isValidDate(day, _month, _year))
             _day = day;
     }
@@ -118,36 +127,40 @@ public class Date {
      * @param other the date to compare this date to
      * @return true if the dates are the same
      */
-    public boolean equals(Date other){
-        return  _day == other._day &&
-                _month == other._month &&
-                _year == other._year;
+    public boolean equals(Date other) {
+        // Check if the two dates have the same values for day, month and year
+        return _day == other.getDay() &&
+               _month == other.getMonth() &&
+               _year == other.getYear();
     }
-
+    
     /**
      * Checks if this date comes before another date
      * @param other date to compare this date to
      * @return true if this date is before the other date
      */
     public boolean before(Date other){
-        if(_year > other._year){
+        // Compare years, months, and days to determine if this date is before the other date
+        // Returns true if this date is before the other date, otherwise false 
+        // If the dates are equal, it returns false       
+        if(getYear() > other.getYear()){
             return false;
         }
-        else if(_year < other._year){
+        else if(getYear() < other.getYear()){
             return true;
         }
         else {
-            if(_month > other._month){
+            if(getMonth() > other.getMonth()){
                 return false;
             }
-            else if(_month < other._month){
+            else if(getMonth() < other.getMonth()){
                 return true;
             }
             else {
-                if(_day > other._day){
+                if(getDay() > other.getDay()){
                     return false;
                 }
-                else if(_day < other._day){
+                else if(getDay() < other.getDay()){
                     return true;
                 }
                 else{
@@ -155,17 +168,16 @@ public class Date {
                 }
             }
         }
-    }
+    }    
 
     /**
      * Checks if this date comes after another date
      * @param other date to compare this date to
      * @return true if this date is after the other date
      */
-    public boolean after(Date other){
-        if(this.equals(other))
-            return false;
-        if(!this.equals(other))
+    public boolean after(Date other) {
+        // Check if this date is not the same as the other date and not before it
+        if(!this.equals(other) && !this.before(other))
             return true;
         else
             return false;
@@ -177,6 +189,7 @@ public class Date {
      * @return the number of days between the dates (non negative value)
      */
     public int difference(Date other){
+        // Calculate the absolute difference between two dates
         return Math.abs(this.calculateDate(_day,_month,_year) - other.calculateDate(other._day, other._month, other._year));
     }
 
@@ -185,15 +198,17 @@ public class Date {
      * @param num the number of years to add (a positive number)
      * @return the new date: this date plus num years
      */
-    public Date addYearsToDate(int num){
-        _year += num;
+    public Date addYearsToDate(int num) {
+        int newYear = _year + num;
+        int newDay = _day;
+        int newMonth = _month;
     
         // Ensure that February 29th is adjusted for leap years
-        if (_month == FEB_MONTH && _day == LAST_DAY_FEB_MONTH_LEAP_YEAR && !isLeapYear(_year)) {
-            _day = LAST_DAY_FEB_NONTH_NON_LEAP_YEAR;
+        if (_month == FEB_MONTH && _day == LAST_DAY_FEB_MONTH_LEAP_YEAR && !isLeapYear(newYear)) {
+            newDay = LAST_DAY_FEB_NONTH_NON_LEAP_YEAR;
         }
-        
-        return this;
+    
+        return new Date(newDay, newMonth, newYear);
     }
 
     /**
@@ -201,12 +216,13 @@ public class Date {
      * @return a String that represents this date
      */
     public String toString(){
+        // Format the date as a string with leading zeros for single-digit day and month
         String message;
-        if(_day < 10)
+        if(_day < TWO_DIGIT_LENGTH)
             message = "0" + _day;
         else
             message = "" + _day;
-        if(_month < 10)
+        if(_month < TWO_DIGIT_LENGTH)
             message += "/0" + _month;
         else
             message += "/" + _month;

@@ -1,14 +1,14 @@
 /**
  * This class represents a Person object
  * @author Or Herzog
- * @version 11/1/2024
+ * @version 15/1/2024
  */
 public class Person {
 
     // Initialize variables
-    private String _name = "Someone"; // name of the person
-    private String _id = "000000000"; // id of the person
-    private Date _dateOfBirth; // person's date of birth
+    private String _name = "Someone"; // Name of the person
+    private String _id = "000000000"; // Id of the person
+    private Date _dateOfBirth; // Person's date of birth
     private final int ID_LENGTH = 9;
     public Person tenant; 
 
@@ -21,11 +21,14 @@ public class Person {
      * @param id the person's id. If id doesn't contain 9 (ID_LENGTH) digits, assign the default string "000000000"
      */
     public Person(String name, int day, int month, int year, String id){
+        // Check if the provided name is empty
         if (!name.equals("")) 
             _name = name;
 
+        // Create a Date object to represent the date of birth
         _dateOfBirth = new Date(day, month, year);
-    
+
+        // Check if the ID has the correct length
         if (id.length() == ID_LENGTH) 
             _id = id;
     }
@@ -34,11 +37,12 @@ public class Person {
      * Copy Constructor
      * @param other the person to be copied
      */
-    public Person(Person other){
-        _name = other._name;
-        _id = other._id;
-        _dateOfBirth = other._dateOfBirth;
-    }
+    public Person(Person other) {
+        // Copy the values of the other person
+        _name = other.getName();
+        _id = other.getId();
+        _dateOfBirth = other.getDateOfBirth();
+    }    
 
     /**
      * Gets the person's name
@@ -61,6 +65,7 @@ public class Person {
      * @return person's date of birth
      */
     public Date getDateOfBirth() {
+        // Return a copy of the date to prevent modification outside the class
         return new Date(_dateOfBirth);
     }
 
@@ -97,8 +102,9 @@ public class Person {
      * @param other another Person object
      * @return true if all the attributes are the same
      */
-    public boolean equals(Person other){
-        return _name.equals(other._name) && _id.equals(other._id) && _dateOfBirth.equals(_dateOfBirth);
+    public boolean equals(Person other) {
+        // Compare the name, ID, and date of birth for two persons
+        return _name.equals(other.getName()) && _id.equals(other.getId()) && _dateOfBirth.equals(other.getDateOfBirth());
     }
 
     /**
@@ -107,20 +113,26 @@ public class Person {
      * @return 1 if this person is older than the other person , -1 if the other person is older than this person. If both people have the same birth date, return 0.
      */
     public int compareTo(Person other) {
-        if (_dateOfBirth.before(other._dateOfBirth)) {
-            return -1;
-        } else if (_dateOfBirth.after(other._dateOfBirth)) {
+        Date thisDateOfBirth = getDateOfBirth();
+        Date otherDateOfBirth = other.getDateOfBirth();
+
+        // Compare the birthdates to determine who is older
+        if (thisDateOfBirth.before(otherDateOfBirth)) {
             return 1;
+        } else if (thisDateOfBirth.after(otherDateOfBirth)) {
+            return -1;
         } else {
             return 0;
         }
     }
+    
 
     /**
      * Returns a String that represents this Person
      * @return a String that represents this Person
      */
     public String toString(){
+        // Generate a string with the person's details
         return "Name: " + _name + "\n" + "ID: " + _id + "\n" + "Date of birth: " + _dateOfBirth;
     }
 }
