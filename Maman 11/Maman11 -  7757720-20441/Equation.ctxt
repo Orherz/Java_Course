@@ -1,6 +1,0 @@
-#BlueJ class context
-comment0.target=Equation
-comment0.text=\n\ \ \ \ This\ program\ calculates\ the\ roots\ of\ a\ quadratic\ equation\ of\ the\ form\:\ ax^2\ +\ bx\ +\ c\ \=\ 0.\n\ \ \ \ It\ takes\ three\ coefficients\ (a,\ b,\ and\ c)\ as\ input\ and\ calculates\ the\ real\ solutions\ (roots)\ of\ the\ equation.\n\ \ \ \ The\ program\ then\ displays\ the\ number\ of\ solutions\ and\ the\ values\ of\ the\ roots,\ if\ they\ exist.\n
-comment1.params=args
-comment1.target=void\ main(java.lang.String[])
-numComments=2
